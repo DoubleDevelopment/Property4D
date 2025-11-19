@@ -1,21 +1,13 @@
-import React from "react";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import GlobePage from "./pages/GlobePage";
 
-function App() {
-  const handleClick = () => toast("Hello world!");
-  
+
+export default function App() {
   return (
-    <div className="h-screen flex items-center justify-center bg-gray-900 text-white">
-      <button
-        className="px-6 py-3 bg-yellow-500 rounded hover:bg-yellow-600 transition"
-        onClick={handleClick}
-      >
-        Show Toast
-      </button>
-      <ToastContainer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<GlobePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
