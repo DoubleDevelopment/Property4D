@@ -1,4 +1,4 @@
-import Globe3D from "../components/globe/Globe3D";
+import Globe3D from "../sections/Globe3D";
 
 export default function GlobePage() {
   return (
