@@ -7,13 +7,13 @@ import { ScatterplotLayer, BitmapLayer, TextLayer } from "@deck.gl/layers";
 import { TileLayer } from "@deck.gl/geo-layers";
 
 
-// --- Modular local components (adjust the relative paths if your folder structure differs) ---
-import EarthMesh from "../components/globe/EarthMesh";
-import Stars from "../components/globe/Stars";
-import SunLight from "../components/globe/SunLight";
-import EarthFollower from "../components/globe/EarthFollower";
-import CameraZoom from "../components/globe/CameraZoom";
-import LandTopo from "../components/globe/LandTopo";
+// --- Modular local components (adjusted paths after moving globe into sections) ---
+import EarthMesh from "../sections/globe/EarthMesh";
+import Stars from "../sections/globe/Stars";
+import SunLight from "../sections/globe/SunLight";
+import EarthFollower from "../sections/globe/EarthFollower";
+import CameraZoom from "../sections/globe/CameraZoom";
+import LandTopo from "../sections/globe/LandTopo";
 
 
 // -------------------- Sample data --------------------

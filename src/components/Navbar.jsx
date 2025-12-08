@@ -17,25 +17,21 @@ export default function Navbar() {
   return (
     <nav className={`fixed top-0 w-full backdrop-blur-sm shadow-lg z-50 border-b-2 transition-all duration-300 ${
       isDark 
-        ? 'bg-gray-900/95 border-yellow-600/30' 
-        : 'bg-white/95 border-yellow-600/50'
+        ? 'bg-gray-900/95 border-amber-500/30' 
+        : 'bg-white/95 border-amber-500/50'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <h1 className={`text-3xl font-bold transition-colors duration-300 ${
-                isDark ? 'text-white' : 'text-gray-900'
-              }`}>
-                <span className="bg-linear-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-                  Property4D
-                </span>
+            <div className="shrink-0">
+              <h1 className={`text-3xl font-bold transition-colors duration-300 font-['Cinzel',serif] bg-linear-to-r from-amber-400 via-yellow-500 to-amber-600 bg-clip-text text-transparent`}>
+                Conneckt
               </h1>
-              <div className={`text-xs mt-1 font-serif tracking-widest uppercase ${
-                isDark ? 'text-yellow-600/70' : 'text-yellow-700/70'
+              <p className={`text-xs tracking-widest uppercase transition-colors duration-300 ${
+                isDark ? 'text-amber-500/70' : 'text-amber-600/70'
               }`}>
-                Real Estate Revolution
-              </div>
+                Global Real Estate Network
+              </p>
             </div>
           </div>
 
@@ -47,8 +43,8 @@ export default function Navbar() {
                   href={item.href}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 font-serif ${
                     isDark 
-                      ? 'text-gray-300 hover:text-yellow-400 hover:bg-yellow-900/20' 
-                      : 'text-gray-700 hover:text-yellow-600 hover:bg-yellow-50'
+                      ? 'text-gray-300 hover:text-amber-400 hover:bg-linear-to-r hover:from-amber-900/20 hover:to-yellow-900/20' 
+                      : 'text-gray-700 hover:text-amber-600 hover:bg-linear-to-r hover:from-amber-50 hover:to-yellow-50'
                   }`}
                 >
                   {item.name}
@@ -58,10 +54,10 @@ export default function Navbar() {
             
             <button
               onClick={toggleDarkMode}
-              className={`p-2 rounded-lg transition-all duration-300 border ${
+              className={`p-2 rounded-lg transition-all duration-300 border shadow-lg ${
                 isDark 
-                  ? 'bg-yellow-900/20 border-yellow-600/50 text-yellow-400 hover:bg-yellow-900/30' 
-                  : 'bg-yellow-50 border-yellow-600/50 text-yellow-600 hover:bg-yellow-100'
+                  ? 'bg-linear-to-br from-amber-900/30 to-yellow-900/20 border-amber-500/50 text-amber-400 hover:shadow-amber-500/20' 
+                  : 'bg-linear-to-br from-amber-50 to-yellow-100 border-amber-500/50 text-amber-600 hover:shadow-amber-500/30'
               }`}
             >
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -71,10 +67,10 @@ export default function Navbar() {
           <div className="md:hidden flex items-center space-x-3">
             <button
               onClick={toggleDarkMode}
-              className={`p-2 rounded-lg transition-all duration-300 border ${
+              className={`p-2 rounded-lg transition-all duration-300 border shadow-lg ${
                 isDark 
-                  ? 'bg-yellow-900/20 border-yellow-600/50 text-yellow-400' 
-                  : 'bg-yellow-50 border-yellow-600/50 text-yellow-600'
+                  ? 'bg-linear-to-br from-amber-900/30 to-yellow-900/20 border-amber-500/50 text-amber-400' 
+                  : 'bg-linear-to-br from-amber-50 to-yellow-100 border-amber-500/50 text-amber-600'
               }`}
             >
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -84,8 +80,8 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               className={`inline-flex items-center justify-center p-2 rounded-lg transition-all duration-200 ${
                 isDark 
-                  ? 'text-gray-300 hover:text-yellow-400 hover:bg-yellow-900/20' 
-                  : 'text-gray-700 hover:text-yellow-600 hover:bg-yellow-50'
+                  ? 'text-gray-300 hover:text-amber-400 hover:bg-linear-to-r hover:from-amber-900/20 hover:to-yellow-900/20' 
+                  : 'text-gray-700 hover:text-amber-600 hover:bg-linear-to-r hover:from-amber-50 hover:to-yellow-50'
               }`}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
