@@ -248,10 +248,10 @@ function EarthMesh({ textureUrl, sunRef }) {
           vec3 oceanColor = mix(deepOcean, shallowOcean, waves + waveDetail);
           
           // Enhanced land colors with texture variation
-          vec3 landBase = vec3(1.0, 0.84, 0.0);       // Bright gold
+          vec3 landBase = vec3(1.0, 1.0, 0.0);       // Bright gold
           vec3 landHighlight = vec3(1.0, 0.9, 0.3);   // Lighter gold
           float landVariation = fbm(vUv * 100.0) * 0.5 + 0.5;
-          vec3 landColor = mix(landBase, landHighlight, landVariation * 0.3);
+          vec3 landColor = mix(landBase, landHighlight, landVariation);
           
           vec3 borderColor = vec3(0.5, 0.42, 0.0);    // Dark gold borders
           
@@ -363,7 +363,7 @@ function SunLight({ speed = 1, sunRef }) {
     );
     sunRef.current.lookAt(0, 0, 0);
   });
-  return <directionalLight ref={sunRef} intensity={2} />;
+  return <directionalLight ref={sunRef} intensity={4} />;
 }
 
 // Golden backlight with glow sphere
@@ -394,7 +394,7 @@ function GoldenBacklight() {
       />
       
       {/* Subtle glowing sphere for visual effect */}
-      <mesh ref={glowRef} position={[-6, 0, 0]}>
+      <mesh ref={glowRef} position={[6, 0, 0]}>
         <sphereGeometry args={[3, 32, 32]} />
         <meshBasicMaterial 
           color="#FFD700" 
@@ -424,7 +424,7 @@ export default function SideGlobe() {
         {/* Single clean backlight for rim effect */}
         <GoldenBacklight />
         
-        <EarthMesh textureUrl="/earth4k.jpg" sunRef={sunRef} />
+        <EarthMesh textureUrl="/earth.png" sunRef={sunRef} />
         <Clouds />
       </Canvas>
     </div>
