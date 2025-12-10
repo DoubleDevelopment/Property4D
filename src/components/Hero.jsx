@@ -7,6 +7,7 @@ import { useDarkMode } from '../contexts/DarkModeContext';
 export default function Hero() {
   const { isDark } = useDarkMode();
   const navigate = useNavigate();
+  const [isGlobeMenuOpen, setIsGlobeMenuOpen] = useState(false);
 
   return (
     <section id="home" className={`relative min-h-screen flex items-center overflow-hidden transition-colors duration-300 ${
@@ -53,21 +54,67 @@ export default function Hero() {
               Experience property discovery through our majestic globe. 
               Where ancient wisdom meets modern real estate technology.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6">
+            <div className="flex flex-col sm:flex-row gap-6 relative">
               <button className="bg-linear-to-r from-amber-500 via-yellow-500 to-amber-600 text-white px-10 py-4 rounded-lg font-semibold hover:from-amber-600 hover:via-yellow-600 hover:to-amber-700 transition-all duration-300 flex items-center justify-center shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/50 transform hover:-translate-y-1">
                 Explore Properties
                 <ArrowRight className="ml-2 h-5 w-5" />
               </button>
-              <button 
-                onClick={() => navigate('/globe')}
-                className={`border-2 px-10 py-4 rounded-lg font-semibold transition-all duration-300 font-serif hover:transform hover:-translate-y-1 shadow-md ${
-                  isDark 
-                    ? 'border-amber-500 text-amber-400 hover:bg-linear-to-r hover:from-amber-900/20 hover:to-yellow-900/20 hover:shadow-amber-500/30' 
-                    : 'border-amber-500 text-amber-600 hover:bg-linear-to-r hover:from-amber-50 hover:to-yellow-50 hover:shadow-amber-500/20'
-                }`}
-              >
-                View Globe Demo
-              </button>
+              <div className="inline-block text-left">
+                <button
+                  type="button"
+                  onClick={() => setIsGlobeMenuOpen((prev) => !prev)}
+                  className={`border-2 px-10 py-4 rounded-lg font-semibold transition-all duration-300 font-serif hover:transform hover:-translate-y-1 shadow-md flex items-center gap-2 ${
+                    isDark
+                      ? 'border-amber-500 text-amber-400 hover:bg-linear-to-r hover:from-amber-900/20 hover:to-yellow-900/20 hover:shadow-amber-500/30'
+                      : 'border-amber-500 text-amber-600 hover:bg-linear-to-r hover:from-amber-50 hover:to-yellow-50 hover:shadow-amber-500/20'
+                  }`}
+                >
+                  View Globe Demo
+                  <span className="text-xs tracking-wide">▼</span>
+                </button>
+
+                {isGlobeMenuOpen && (
+                  <div className={`absolute mt-2 w-56 rounded-md shadow-lg z-20 ${
+                    isDark ? 'bg-black/90 border border-amber-500/40' : 'bg-white border border-amber-500/30'
+                  }`}>
+                    <div className="py-1">
+                      <button
+                        onClick={() => {
+                          setIsGlobeMenuOpen(false);
+                          navigate('/globe3d');
+                        }}
+                        className={`w-full text-left px-4 py-2 text-sm hover:bg-amber-500/10 ${
+                          isDark ? 'text-amber-100' : 'text-amber-700'
+                        }`}
+                      >
+                        Globe 3D Demo
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsGlobeMenuOpen(false);
+                          navigate('/globe4d');
+                        }}
+                        className={`w-full text-left px-4 py-2 text-sm hover:bg-amber-500/10 ${
+                          isDark ? 'text-amber-100' : 'text-amber-700'
+                        }`}
+                      >
+                        Globe 4D Demo
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsGlobeMenuOpen(false);
+                          navigate('/globe');
+                        }}
+                        className={`w-full text-left px-4 py-2 text-sm hover:bg-amber-500/10 ${
+                          isDark ? 'text-amber-100' : 'text-amber-700'
+                        }`}
+                      >
+                        Deck Globe Demo
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           
