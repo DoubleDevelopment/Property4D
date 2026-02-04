@@ -1,0 +1,280 @@
+<div class="calculator-page">
+  <div class="container">
+    <header class="page-header fade-in">
+      <h1>Mortgage & Affordability Calculator</h1>
+      <p class="text-muted">Clarity for buyers, refinancers, and FHA scenarios</p>
+    </header>
+
+    <div class="mode-switch card slide-up">
+      <button type="button" class="mode" [class.active]="mode() === 'affordability'" (click)="setMode('affordability')">Affordability</button>
+      <button type="button" class="mode" [class.active]="mode() === 'refinance'" (click)="setMode('refinance')">Refinance</button>
+      <button type="button" class="mode" [class.active]="mode() === 'fha'" (click)="setMode('fha')">FHA Loan</button>
+    </div>
+
+    @if (mode() === 'affordability') {
+      <div class="grid grid-2 slide-up">
+        <section class="card panel">
+          <h2>Inputs</h2>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Annual Income</label>
+              <input type="number" [(ngModel)]="annualIncome" />
+            </div>
+
+            <div class="form-group">
+              <label>Monthly Debts</label>
+              <input type="number" [(ngModel)]="monthlyDebts" />
+            </div>
+
+            <div class="form-group">
+              <label>Down Payment</label>
+              <input type="number" [(ngModel)]="downPayment" />
+            </div>
+
+            <div class="form-group">
+              <label>Interest Rate (%)</label>
+              <input type="number" step="0.01" [(ngModel)]="interestRate" />
+            </div>
+
+            <div class="form-group">
+              <label>Term (years)</label>
+              <input type="number" [(ngModel)]="termYears" />
+            </div>
+
+            <div class="form-group">
+              <label>DTI Max (0-1)</label>
+              <input type="number" step="0.01" [(ngModel)]="dtiMax" />
+            </div>
+
+            <div class="form-group">
+              <label>Annual Property Tax</label>
+              <input type="number" [(ngModel)]="annualPropertyTax" />
+            </div>
+
+            <div class="form-group">
+              <label>Annual Insurance</label>
+              <input type="number" [(ngModel)]="annualInsurance" />
+            </div>
+
+            <div class="form-group">
+              <label>Monthly HOA</label>
+              <input type="number" [(ngModel)]="monthlyHoa" />
+            </div>
+          </div>
+        </section>
+
+        <section class="card panel seam">
+          <h2>Result</h2>
+
+          <div class="result">
+            <div class="row">
+              <div class="label">Max Monthly Housing (all-in)</div>
+              <div class="value text-gold">{{ affordability().maxPaymentAll | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">Max Principal + Interest</div>
+              <div class="value">{{ affordability().maxPI | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">Estimated Max Loan</div>
+              <div class="value">{{ affordability().maxLoan | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">Estimated Max Home Price</div>
+              <div class="value">{{ affordability().maxPrice | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="row">
+              <div class="label">Taxes (monthly)</div>
+              <div class="value">{{ affordability().breakdown.taxMonthly | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">Insurance (monthly)</div>
+              <div class="value">{{ affordability().breakdown.insMonthly | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">HOA</div>
+              <div class="value">{{ affordability().breakdown.hoa | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+          </div>
+
+          <p class="note text-small text-muted">
+            This is an estimate. Actual lender guidelines vary (credit, reserves, property taxes, PMI, etc.).
+          </p>
+        </section>
+      </div>
+    }
+
+    @if (mode() === 'refinance') {
+      <div class="grid grid-2 slide-up">
+        <section class="card panel">
+          <h2>Inputs</h2>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Current Balance</label>
+              <input type="number" [(ngModel)]="currentBalance" />
+            </div>
+            <div class="form-group">
+              <label>Current Rate (%)</label>
+              <input type="number" step="0.01" [(ngModel)]="currentRate" />
+            </div>
+            <div class="form-group">
+              <label>Remaining Term (years)</label>
+              <input type="number" [(ngModel)]="remainingYears" />
+            </div>
+
+            <div class="form-group">
+              <label>New Rate (%)</label>
+              <input type="number" step="0.01" [(ngModel)]="newRate" />
+            </div>
+            <div class="form-group">
+              <label>New Term (years)</label>
+              <input type="number" [(ngModel)]="newYears" />
+            </div>
+            <div class="form-group">
+              <label>Closing Costs</label>
+              <input type="number" [(ngModel)]="closingCosts" />
+            </div>
+          </div>
+        </section>
+
+        <section class="card panel seam">
+          <h2>Result</h2>
+
+          <div class="result">
+            <div class="row">
+              <div class="label">Current Payment (P&I)</div>
+              <div class="value">{{ refinance().currentPayment | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">New Payment (P&I)</div>
+              <div class="value">{{ refinance().newPayment | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">Estimated Monthly Savings</div>
+              <div class="value text-gold">{{ refinance().savings | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">Breakeven (months)</div>
+              <div class="value">{{ refinance().breakevenMonths | number:'1.0-0' }}</div>
+            </div>
+          </div>
+
+          <p class="note text-small text-muted">
+            Breakeven assumes savings remain constant and excludes taxes/insurance/escrow changes.
+          </p>
+        </section>
+      </div>
+    }
+
+    @if (mode() === 'fha') {
+      <div class="grid grid-2 slide-up">
+        <section class="card panel">
+          <h2>Inputs</h2>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Home Price</label>
+              <input type="number" [(ngModel)]="fhaHomePrice" />
+            </div>
+            <div class="form-group">
+              <label>Down Payment (%)</label>
+              <input type="number" step="0.01" [(ngModel)]="fhaDownPaymentPercent" />
+            </div>
+            <div class="form-group">
+              <label>Interest Rate (%)</label>
+              <input type="number" step="0.01" [(ngModel)]="fhaInterestRate" />
+            </div>
+            <div class="form-group">
+              <label>Term (years)</label>
+              <input type="number" [(ngModel)]="fhaTermYears" />
+            </div>
+
+            <div class="form-group">
+              <label>Annual MIP (%)</label>
+              <input type="number" step="0.01" [(ngModel)]="fhaAnnualMipRate" />
+            </div>
+            <div class="form-group">
+              <label>Upfront MIP (%)</label>
+              <input type="number" step="0.01" [(ngModel)]="fhaUpfrontMipRate" />
+            </div>
+
+            <div class="form-group">
+              <label>Annual Property Tax</label>
+              <input type="number" [(ngModel)]="fhaAnnualPropertyTax" />
+            </div>
+            <div class="form-group">
+              <label>Annual Insurance</label>
+              <input type="number" [(ngModel)]="fhaAnnualInsurance" />
+            </div>
+            <div class="form-group">
+              <label>Monthly HOA</label>
+              <input type="number" [(ngModel)]="fhaMonthlyHoa" />
+            </div>
+          </div>
+        </section>
+
+        <section class="card panel seam">
+          <h2>Result</h2>
+
+          <div class="result">
+            <div class="row">
+              <div class="label">Down Payment</div>
+              <div class="value">{{ fha().downPayment | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">Base Loan</div>
+              <div class="value">{{ fha().baseLoan | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">Upfront MIP (financed)</div>
+              <div class="value">{{ fha().upfrontMip | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">Total Loan</div>
+              <div class="value">{{ fha().totalLoan | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="row">
+              <div class="label">P&I</div>
+              <div class="value">{{ fha().pi | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">Monthly MIP</div>
+              <div class="value">{{ fha().monthlyMip | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">Taxes</div>
+              <div class="value">{{ fha().taxMonthly | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">Insurance</div>
+              <div class="value">{{ fha().insMonthly | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+            <div class="row">
+              <div class="label">HOA</div>
+              <div class="value">{{ fha().hoa | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="row total">
+              <div class="label">Estimated Total Monthly</div>
+              <div class="value text-gold">{{ fha().totalMonthly | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+          </div>
+
+          <p class="note text-small text-muted">
+            FHA MIP rules vary by LTV, term, and origination date. This is a simplified estimate.
+          </p>
+        </section>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,73 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-md;
+  background: linear-gradient(
+    135deg,
+    var(--p4d-bg) 0%,
+    var(--p4d-accent-soft) 100%
+  );
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+  background: var(--p4d-surface);
+  border-radius: $border-radius-md;
+  padding: $spacing-xl;
+  box-shadow: var(--p4d-shadow-medium);
+  @include kintsukuroi-border;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.auth-form {
+  .form-group {
+    margin-bottom: $spacing-md;
+
+    label {
+      display: block;
+      margin-bottom: $spacing-xs;
+      font-weight: 500;
+      color: var(--p4d-text);
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .btn-full {
+    width: 100%;
+    margin-top: $spacing-md;
+  }
+}
+
+.error-message {
+  padding: $spacing-sm;
+  margin-bottom: $spacing-md;
+  background: var(--p4d-accent-soft);
+  border-radius: $border-radius-sm;
+  color: var(--p4d-text);
+  text-align: center;
+}
+
+.auth-footer {
+  margin-top: $spacing-lg;
+  text-align: center;
+  padding-top: $spacing-md;
+  @include kintsukuroi-seam;
+}

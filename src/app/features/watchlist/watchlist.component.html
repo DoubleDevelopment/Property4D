@@ -1,0 +1,46 @@
+<div class="watchlist-page">
+  <div class="container">
+    <header class="page-header fade-in">
+      <h1>Saved / Watchlist</h1>
+      <p class="text-muted">Track what you care about</p>
+    </header>
+
+    @if (items().length === 0) {
+      <div class="content card slide-up">
+        <p class="text-editorial">
+          Your saved properties will appear here.
+        </p>
+
+        <div class="actions">
+          <a routerLink="/properties" class="btn btn-primary">Browse Listings</a>
+          <a routerLink="/globe" class="btn btn-secondary">Explore Globe</a>
+        </div>
+      </div>
+    } @else {
+      <div class="watchlist-grid slide-up">
+        @for (item of items(); track item.id) {
+          <div class="watchlist-card card">
+            <a class="card-link" [routerLink]="['/properties', item.id]">
+              <div class="image">
+                @if (item.image) {
+                  <img [src]="item.image" [alt]="item.title" />
+                }
+              </div>
+              <div class="meta">
+                <h3>{{ item.title }}</h3>
+                <p class="text-small text-muted">{{ item.location }}</p>
+                @if (item.price && item.currency) {
+                  <p class="text-gold">{{ item.price | currency:item.currency }}</p>
+                }
+              </div>
+            </a>
+
+            <button type="button" class="btn btn-ghost remove" (click)="remove(item.id)">
+              Remove
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

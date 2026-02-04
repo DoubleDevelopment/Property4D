@@ -1,0 +1,100 @@
+<div class="property-detail">
+  @if (isLoading()) {
+    <div class="loading">
+      <p>Loading property...</p>
+    </div>
+  } @else if (property()) {
+    <div class="container">
+      <a routerLink="/properties" class="back-link btn btn-ghost">← Back to Listings</a>
+
+      <div class="property-hero fade-in">
+        <div class="hero-image">
+          @if (property()!.images.length > 0) {
+            <img [src]="property()!.images[selectedImageIndex()]" [alt]="property()!.title" />
+          }
+        </div>
+        
+        @if (property()!.images.length > 1) {
+          <div class="image-thumbnails">
+            @for (image of property()!.images; track $index) {
+              <button 
+                class="thumbnail"
+                [class.active]="selectedImageIndex() === $index"
+                (click)="selectImage($index)"
+              >
+                <img [src]="image" [alt]="'Image ' + ($index + 1)" />
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="property-content slide-up">
+        <div class="content-main">
+          <header class="property-header">
+            <h1>{{ property()!.title }}</h1>
+            <p class="property-location text-large text-muted">
+              {{ property()!.location.address }}, {{ property()!.location.city }}, {{ property()!.location.country }}
+            </p>
+            <p class="property-price text-gold">
+              {{ formatPrice(property()!.price, property()!.currency) }}
+            </p>
+          </header>
+
+          <section class="property-section seam">
+            <h2>Description</h2>
+            <p class="text-editorial">{{ property()!.description }}</p>
+          </section>
+
+          <section class="property-section seam">
+            <h2>Features</h2>
+            <div class="features-grid">
+              @for (feature of property()!.features; track feature.name) {
+                <div class="feature-item">
+                  <strong>{{ feature.name }}:</strong> {{ feature.value }}
+                </div>
+              }
+            </div>
+          </section>
+
+          @if (property()!.timeline.length > 0) {
+            <section class="property-section seam">
+              <h2>Timeline (4D)</h2>
+              <div class="timeline">
+                @for (event of property()!.timeline; track event.date) {
+                  <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                      <h4>{{ event.phase }}</h4>
+                      <p class="text-small text-muted">{{ event.date | date }}</p>
+                      <p>{{ event.description }}</p>
+                    </div>
+                  </div>
+                }
+              </div>
+            </section>
+          }
+        </div>
+
+        <aside class="content-sidebar">
+          <div class="card">
+            <h3>Contact</h3>
+            <p class="text-small text-muted">Interested in this property?</p>
+            <button
+              type="button"
+              class="btn btn-secondary btn-full"
+              (click)="toggleWatchlist()"
+            >
+              @if (isSaved()) {
+                <span>Saved — Remove from Watchlist</span>
+              } @else {
+                <span>Save to Watchlist</span>
+              }
+            </button>
+            <button class="btn btn-primary btn-full">Request Information</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  }
+</div>

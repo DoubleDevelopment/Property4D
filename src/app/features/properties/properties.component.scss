@@ -1,0 +1,115 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.properties-page {
+  min-height: 100vh;
+  padding: $spacing-xl 0;
+}
+
+.page-header {
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+  @include kintsukuroi-seam;
+
+  h1 {
+    margin-bottom: $spacing-xs;
+  }
+}
+
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: $spacing-lg;
+}
+
+.property-card {
+  overflow: hidden;
+  display: block;
+  @include calm-transition;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  .property-image {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background: $color-graphite-lighter;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-slow;
+    }
+  }
+
+  .save-button {
+    position: absolute;
+    top: $spacing-sm;
+    right: $spacing-sm;
+    padding: 10px 12px;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    background: var(--p4d-surface-2);
+    border: 1px solid rgba($color-gold, 0.25);
+    color: var(--p4d-text);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--p4d-shadow-subtle);
+    @include calm-transition;
+
+    &:hover {
+      border-color: rgba($color-gold, 0.55);
+      color: var(--p4d-accent-strong);
+      transform: translateY(-1px);
+    }
+
+    &.saved {
+      background: rgba($color-gold, 0.15);
+      border-color: rgba($color-gold, 0.55);
+      color: var(--p4d-accent-strong);
+    }
+  }
+
+  &:hover .property-image img {
+    transform: scale(1.05);
+  }
+
+  .property-content {
+    padding: $spacing-md;
+
+    h3 {
+      margin-bottom: $spacing-xs;
+      font-size: 1.25rem;
+    }
+
+    .property-location {
+      margin-bottom: $spacing-sm;
+    }
+
+    .property-price {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: $spacing-sm;
+    }
+
+    .property-description {
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+}
+
+.loading,
+.empty-state {
+  text-align: center;
+  padding: $spacing-xxl;
+}

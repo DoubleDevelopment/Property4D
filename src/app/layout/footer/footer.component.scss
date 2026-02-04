@@ -1,0 +1,52 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.footer {
+  border-top: 1px solid rgba($color-gold, 0.12);
+  background: var(--p4d-bg);
+  padding: $spacing-lg 0;
+}
+
+.footer-inner {
+  display: grid;
+  gap: $spacing-lg;
+
+  @media (min-width: $breakpoint-desktop) {
+    grid-template-columns: 1.2fr 2fr 1fr;
+    align-items: start;
+  }
+}
+
+.footer-brand {
+  .title {
+    font-family: $font-serif;
+    font-size: 1.25rem;
+    margin-bottom: $spacing-xs;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+
+  a {
+    color: var(--p4d-text-soft);
+    padding: 8px 10px;
+    border-radius: $border-radius-sm;
+    @include calm-transition;
+
+    &:hover {
+      color: var(--p4d-accent);
+      background: var(--p4d-accent-soft);
+    }
+  }
+}
+
+.footer-meta {
+  font-size: 0.9rem;
+}

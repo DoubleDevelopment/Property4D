@@ -1,0 +1,131 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.dashboard {
+  min-height: 100vh;
+  padding: $spacing-xl 0;
+  
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-lg 0;
+  }
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+  @include kintsukuroi-seam;
+  
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-md;
+  }
+
+  h1 {
+    margin-bottom: $spacing-xs;
+  }
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: $spacing-xl;
+}
+
+.dashboard-section {
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-md;
+
+    h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-md;
+}
+
+.property-card {
+  overflow: hidden;
+  cursor: pointer;
+
+  .property-image {
+    width: 100%;
+    height: 200px;
+    background: $color-graphite-lighter;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-slow;
+    }
+  }
+
+  &:hover .property-image img {
+    transform: scale(1.05);
+  }
+
+  .property-info {
+    padding: $spacing-md;
+
+    h3 {
+      margin-bottom: $spacing-xs;
+      font-size: 1.125rem;
+    }
+  }
+}
+
+.recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.recent-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md;
+  background: var(--p4d-surface);
+  border-radius: $border-radius-sm;
+  box-shadow: var(--p4d-shadow-subtle);
+  @include calm-transition;
+
+  &:hover {
+    box-shadow: var(--p4d-shadow-medium);
+  }
+
+  h4 {
+    margin-bottom: $spacing-xs;
+    font-size: 1rem;
+  }
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-md;
+}
+
+.action-card {
+  text-align: center;
+  cursor: pointer;
+
+  h3 {
+    color: $color-gold;
+    margin-bottom: $spacing-sm;
+    font-size: 1.125rem;
+  }
+}

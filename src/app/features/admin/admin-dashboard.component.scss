@@ -1,0 +1,21 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.admin-page {
+  min-height: 100vh;
+  padding: $spacing-xl 0;
+}
+
+.page-header {
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+  @include kintsukuroi-seam;
+
+  h1 {
+    margin-bottom: $spacing-xs;
+  }
+}
+
+.content {
+  padding: $spacing-lg;
+}

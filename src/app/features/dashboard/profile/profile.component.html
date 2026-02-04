@@ -1,0 +1,43 @@
+<div class="profile-page">
+  <div class="container">
+    <header class="page-header fade-in">
+      <h1>Profile Settings</h1>
+      <p class="text-muted">Manage your account preferences</p>
+    </header>
+
+    <div class="profile-content slide-up">
+      <section class="profile-section card">
+        <h2 class="seam">Account Information</h2>
+        
+        @if (user()) {
+          <div class="info-grid">
+            <div class="info-item">
+              <label>Name</label>
+              <p>{{ user()!.firstName }} {{ user()!.lastName }}</p>
+            </div>
+            <div class="info-item">
+              <label>Email</label>
+              <p>{{ user()!.email }}</p>
+            </div>
+            <div class="info-item">
+              <label>Role</label>
+              <p>{{ user()!.role }}</p>
+            </div>
+            <div class="info-item">
+              <label>Member Since</label>
+              <p>{{ user()!.createdAt | date }}</p>
+            </div>
+          </div>
+        }
+      </section>
+
+      <section class="profile-section card">
+        <h2 class="seam">Actions</h2>
+        <div class="actions">
+          <a routerLink="/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+          <button class="btn btn-ghost" (click)="logout()">Sign Out</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

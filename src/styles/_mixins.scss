@@ -1,0 +1,99 @@
+@mixin kintsukuroi-seam {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      $color-gold-muted 20%,
+      $color-gold 50%,
+      $color-gold-muted 80%,
+      transparent 100%
+    );
+    opacity: 0.6;
+    transition: opacity $transition-normal;
+  }
+  
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+@mixin kintsukuroi-border {
+  border: 1px solid transparent;
+  background-image: 
+    linear-gradient(var(--p4d-surface), var(--p4d-surface)),
+    linear-gradient(135deg, $color-gold-light, $color-gold, $color-gold-dark);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+@mixin gold-glow {
+  box-shadow: 0 0 20px rgba($color-gold, 0.3),
+              0 0 40px rgba($color-gold, 0.15);
+}
+
+@mixin calm-transition {
+  transition: all $transition-slow ease-in-out;
+}
+
+@mixin breathing-space {
+  padding: $spacing-lg;
+  
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-md;
+  }
+}
+
+@mixin architectural-card {
+  background: var(--p4d-surface);
+  border-radius: $border-radius-sm;
+  box-shadow: var(--p4d-shadow-subtle);
+  @include breathing-space;
+  @include calm-transition;
+  
+  &:hover {
+    box-shadow: var(--p4d-shadow-gold);
+    transform: translateY(-2px);
+  }
+}
+
+@mixin text-editorial {
+  font-family: $font-serif;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+@mixin fracture-line {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      $color-gold 30%,
+      $color-gold 70%,
+      transparent
+    );
+    transform: translateY(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform $transition-slow ease-out;
+  }
+  
+  &.active::before {
+    transform: translateY(-50%) scaleX(1);
+  }
+}

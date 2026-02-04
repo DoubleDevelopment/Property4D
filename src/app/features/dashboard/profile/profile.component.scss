@@ -1,0 +1,59 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.profile-page {
+  min-height: 100vh;
+  padding: $spacing-xl 0;
+}
+
+.page-header {
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+  @include kintsukuroi-seam;
+
+  h1 {
+    margin-bottom: $spacing-xs;
+  }
+}
+
+.profile-content {
+  max-width: 800px;
+}
+
+.profile-section {
+  margin-bottom: $spacing-lg;
+
+  h2 {
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-md;
+  }
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-lg;
+
+  .info-item {
+    label {
+      display: block;
+      font-weight: 600;
+      color: $color-graphite-light;
+      margin-bottom: $spacing-xs;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    p {
+      font-size: 1.125rem;
+      color: $color-graphite;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+}

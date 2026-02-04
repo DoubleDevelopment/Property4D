@@ -1,0 +1,55 @@
+<div class="properties-page">
+  <div class="container">
+    <header class="page-header fade-in">
+      <h1>Property Listings</h1>
+      <p class="text-muted">Explore our curated collection</p>
+    </header>
+
+    @if (isLoading()) {
+      <div class="loading">
+        <p>Loading properties...</p>
+      </div>
+    } @else {
+      <div class="properties-grid slide-up">
+        @for (property of properties(); track property.id) {
+          <a [routerLink]="['/properties', property.id]" class="property-card card">
+            <div class="property-image">
+              @if (property.images.length > 0) {
+                <img [src]="property.images[0]" [alt]="property.title" />
+              }
+
+              <button
+                type="button"
+                class="save-button"
+                [class.saved]="isSaved(property.id)"
+                (click)="toggleWatchlist(property, $event)"
+              >
+                @if (isSaved(property.id)) {
+                  <span>Saved</span>
+                } @else {
+                  <span>Save</span>
+                }
+              </button>
+            </div>
+            <div class="property-content">
+              <h3>{{ property.title }}</h3>
+              <p class="property-location text-small text-muted">
+                {{ property.location.city }}, {{ property.location.country }}
+              </p>
+              <p class="property-price text-gold">
+                {{ formatPrice(property.price, property.currency) }}
+              </p>
+              <p class="property-description text-small">
+                {{ property.description }}
+              </p>
+            </div>
+          </a>
+        } @empty {
+          <div class="empty-state">
+            <p class="text-muted">No properties available at this time.</p>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

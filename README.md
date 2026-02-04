@@ -1,16 +1,83 @@
-# React + Vite
+# Property 4D
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Premium real-estate platform centered around a 3D globe interface, user accounts, and personalized dashboards. Built with Angular 18+ and TypeScript.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Property 4D visualizes real estate across four dimensions:
+- **Space**: 3D globe navigation
+- **Time**: Development & ownership phases
+- **Value**: Growth, repair, refinement timelines
+- **Experience**: Luxury, calm, architectural beauty
 
-## React Compiler
+Inspired by Kintsukuroi (golden repair) - where fractures become features.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **Angular 18** (Standalone components)
+- **TypeScript** (Strict mode)
+- **Three.js** (3D globe visualization)
+- **RxJS** (Reactive state management)
+- **SCSS** (Design system)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation
+
+```bash
+npm install
+```
+
+## Development
+
+```bash
+npm start
+```
+
+Navigate to `http://localhost:4200/`
+
+## Build
+
+```bash
+npm run build
+```
+
+## Project Structure
+
+```
+/src
+├── app
+│   ├── core              # Auth, services, models
+│   ├── shared            # Reusable components
+│   ├── features          # Feature modules
+│   │   ├── landing
+│   │   ├── auth
+│   │   ├── globe
+│   │   ├── properties
+│   │   ├── dashboard
+│   │   └── about
+│   └── layout
+├── styles                # SCSS design system
+└── environments
+```
+
+## Features
+
+✅ Token-based authentication  
+✅ Route guards & HTTP interceptors  
+✅ 3D globe with Three.js  
+✅ Client dashboard  
+✅ Property listings & details  
+✅ Kintsukuroi design system  
+✅ Lazy-loaded routes  
+✅ Angular signals for state  
+
+## Design Philosophy
+
+- White × muted gold (Kintsukuroi aesthetic)
+- Slow, confident transitions
+- Architectural, editorial quality
+- Performance-first
+- Desktop-first, mobile-capable
+
+## Old React Project
+
+The original React project is preserved in `/old-react/` for reference.

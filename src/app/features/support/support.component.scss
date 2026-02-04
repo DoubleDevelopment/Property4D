@@ -1,0 +1,33 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.support-page {
+  min-height: 100vh;
+  padding: $spacing-xl 0;
+}
+
+.page-header {
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+  @include kintsukuroi-seam;
+
+  h1 {
+    margin-bottom: $spacing-xs;
+  }
+}
+
+.section-card {
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+
+  h2 {
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+  margin-top: $spacing-lg;
+}

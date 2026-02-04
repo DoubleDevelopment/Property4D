@@ -1,0 +1,85 @@
+<div class="auth-page">
+  <div class="auth-container fade-in">
+    <div class="auth-header">
+      <h1>Create Account</h1>
+      <p class="text-muted">Begin your Property 4D experience</p>
+    </div>
+
+    <form class="auth-form" (ngSubmit)="onSubmit()">
+      @if (error()) {
+        <div class="error-message fracture-line active">
+          {{ error() }}
+        </div>
+      }
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            [value]="registerData().firstName"
+            (input)="updateField('firstName', $any($event.target).value)"
+            required
+            autocomplete="given-name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            [value]="registerData().lastName"
+            (input)="updateField('lastName', $any($event.target).value)"
+            required
+            autocomplete="family-name"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          [value]="registerData().email"
+          (input)="updateField('email', $any($event.target).value)"
+          required
+          autocomplete="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          [value]="registerData().password"
+          (input)="updateField('password', $any($event.target).value)"
+          required
+          autocomplete="new-password"
+        />
+      </div>
+
+      <button 
+        type="submit" 
+        class="btn btn-primary btn-full"
+        [disabled]="isLoading()"
+      >
+        @if (isLoading()) {
+          <span>Creating account...</span>
+        } @else {
+          <span>Create Account</span>
+        }
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      <p class="text-small text-muted">
+        Already have an account? 
+        <a routerLink="/auth/login" class="text-gold">Sign in</a>
+      </p>
+    </div>
+  </div>
+</div>

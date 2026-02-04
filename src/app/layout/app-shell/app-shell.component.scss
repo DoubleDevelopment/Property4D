@@ -1,0 +1,13 @@
+@import '../../../styles/variables';
+
+.app-shell {
+  --header-height: 76px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  padding-top: 0;
+}

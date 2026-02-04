@@ -1,0 +1,74 @@
+<header class="header">
+  <div class="container header-inner">
+    <a class="brand" routerLink="/" (click)="closeMenu()">
+      <div class="brand-title">Property 4D</div>
+      <div class="brand-subtitle">Spatial Real Estate Intelligence</div>
+    </a>
+
+    <nav class="nav-desktop">
+      <a routerLink="/globe" routerLinkActive="active" class="nav-link">Globe</a>
+      <a routerLink="/properties" routerLinkActive="active" class="nav-link">Listings</a>
+      <a routerLink="/insights" routerLinkActive="active" class="nav-link">Insights</a>
+      <a routerLink="/calculator" routerLinkActive="active" class="nav-link">Calculator</a>
+      <a routerLink="/about" routerLinkActive="active" class="nav-link">About</a>
+    </nav>
+
+    <div class="actions-desktop">
+      <button type="button" class="btn btn-ghost theme-toggle" (click)="toggleTheme()">
+        @if (themeMode() === 'dark') {
+          <span>Light</span>
+        } @else {
+          <span>Dark</span>
+        }
+      </button>
+
+      @if (isAuthenticated()) {
+        <a routerLink="/watchlist" routerLinkActive="active" class="btn btn-secondary">Watchlist</a>
+        <a routerLink="/dashboard" routerLinkActive="active" class="btn btn-primary">Dashboard</a>
+        <button type="button" class="btn btn-ghost" (click)="logout()">Logout</button>
+      } @else {
+        <button type="button" class="btn btn-ghost" (click)="navigateToLogin()">Login</button>
+        <button type="button" class="btn btn-primary" (click)="navigateToRegister()">Sign up</button>
+      }
+    </div>
+
+    <button class="menu-button" type="button" (click)="toggleMenu()" aria-label="Menu">
+      <span class="menu-line" [class.open]="isMenuOpen()"></span>
+      <span class="menu-line" [class.open]="isMenuOpen()"></span>
+      <span class="menu-line" [class.open]="isMenuOpen()"></span>
+    </button>
+  </div>
+
+  @if (isMenuOpen()) {
+    <div class="menu-mobile">
+      <div class="container menu-mobile-inner">
+        <button type="button" class="menu-link button-link" (click)="toggleTheme(); closeMenu()">
+          @if (themeMode() === 'dark') {
+            <span>Light mode</span>
+          } @else {
+            <span>Dark mode</span>
+          }
+        </button>
+
+        <a routerLink="/globe" class="menu-link" (click)="closeMenu()">Globe</a>
+        <a routerLink="/properties" class="menu-link" (click)="closeMenu()">Listings</a>
+        <a routerLink="/insights" class="menu-link" (click)="closeMenu()">Insights</a>
+        <a routerLink="/about" class="menu-link" (click)="closeMenu()">About</a>
+        <a routerLink="/calculator" class="menu-link" (click)="closeMenu()">Calculator</a>
+        <a routerLink="/how-it-works" class="menu-link" (click)="closeMenu()">How it works</a>
+        <a routerLink="/support" class="menu-link" (click)="closeMenu()">Support</a>
+
+        <div class="menu-divider"></div>
+
+        @if (isAuthenticated()) {
+          <a routerLink="/watchlist" class="menu-link" (click)="closeMenu()">Watchlist</a>
+          <a routerLink="/dashboard" class="menu-link" (click)="closeMenu()">Dashboard</a>
+          <button type="button" class="menu-link button-link" (click)="logout()">Logout</button>
+        } @else {
+          <button type="button" class="menu-link button-link" (click)="navigateToLogin()">Login</button>
+          <button type="button" class="menu-link button-link primary" (click)="navigateToRegister()">Sign up</button>
+        }
+      </div>
+    </div>
+  }
+</header>

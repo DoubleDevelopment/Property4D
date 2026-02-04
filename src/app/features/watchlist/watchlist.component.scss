@@ -1,0 +1,75 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.watchlist-page {
+  min-height: 100vh;
+  padding: $spacing-xl 0;
+}
+
+.page-header {
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+  @include kintsukuroi-seam;
+
+  h1 {
+    margin-bottom: $spacing-xs;
+  }
+}
+
+.content {
+  padding: $spacing-lg;
+}
+
+.actions {
+  display: flex;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+  margin-top: $spacing-lg;
+}
+
+.watchlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: $spacing-lg;
+}
+
+.watchlist-card {
+  overflow: hidden;
+
+  .card-link {
+    display: block;
+  }
+
+  .image {
+    width: 100%;
+    height: 220px;
+    background: $color-graphite-lighter;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-slow;
+    }
+  }
+
+  &:hover .image img {
+    transform: scale(1.04);
+  }
+
+  .meta {
+    padding: $spacing-md;
+
+    h3 {
+      margin-bottom: $spacing-xs;
+      font-size: 1.25rem;
+    }
+  }
+
+  .remove {
+    width: 100%;
+    border-top: 1px solid rgba($color-gold, 0.12);
+    padding: $spacing-sm;
+  }
+}

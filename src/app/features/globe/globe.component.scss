@@ -1,0 +1,40 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.globe-page {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  background: $color-graphite;
+  overflow: hidden;
+}
+
+.globe-container {
+  width: 100%;
+  height: 100%;
+}
+
+.globe-ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: $spacing-lg;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.globe-info {
+  background: rgba($color-white, 0.95);
+  padding: $spacing-md $spacing-lg;
+  border-radius: $border-radius-sm;
+  backdrop-filter: blur(10px);
+  max-width: 400px;
+  pointer-events: auto;
+  @include kintsukuroi-border;
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: $spacing-xs;
+  }
+}

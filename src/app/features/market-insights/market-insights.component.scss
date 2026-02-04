@@ -1,0 +1,28 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.insights-page {
+  min-height: 100vh;
+  padding: $spacing-xl 0;
+}
+
+.page-header {
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+  @include kintsukuroi-seam;
+
+  h1 {
+    margin-bottom: $spacing-xs;
+  }
+}
+
+.content {
+  padding: $spacing-lg;
+}
+
+.actions {
+  display: flex;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+  margin-top: $spacing-lg;
+}

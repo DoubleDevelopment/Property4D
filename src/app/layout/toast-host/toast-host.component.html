@@ -1,0 +1,7 @@
+<div class="toast-host" aria-live="polite" aria-relevant="additions removals">
+  @for (toast of toasts(); track toast.id) {
+    <div class="toast" [class]="'toast ' + toast.type" (click)="dismiss(toast.id)">
+      <div class="message">{{ toast.message }}</div>
+    </div>
+  }
+</div>
